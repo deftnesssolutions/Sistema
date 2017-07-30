@@ -10,8 +10,7 @@ $configs->env->development->database->setConnectionData(array(
   'host' => 'localhost',
   'user' => 'root',
   'password' => 'admin',
-  'dbname' => 'tarefatodolit',
-  'charset' => 'utf8'
+  'dbname' => 'tarefatodolit'
   ));
 
 return $configs;
