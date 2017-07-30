@@ -11,8 +11,22 @@ class CadastroController extends \HXPHP\System\Controller
        		'email'=> FILTER_VALIDATE_EMAIL
        	));
 
+       $post=$this->request->post();
+
        //var_dump($this->request->post());
-       $cadastrarUsuario = User::cadastrar($this->request->post());
+       if(!empty($post))
+       {
+       		$cadastrarUsuario = User::cadastrar($post);
+       		//var_dump($cadastrarUsuario);
+       		if($cadastrarUsuario->status===false)
+       		{
+       			$this->load('Helpers\Alert', array(
+       				'danger',
+       				'ops! Não foi possivel efetuar seu cadastro. <br> Verifique os erros abaixo:',
+       				$cadastrarUsuario->errors
+       			));
+       		}
+   	   }
        //gerar senha
        //obter role_id
     }
