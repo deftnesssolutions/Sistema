@@ -29,17 +29,17 @@ class User extends \HXPHP\System\Model
     );
 	public static function cadastrar(array $post)
 	{
-		$userObj = new \stdClass;
-		$userObj->status=false;
-		$userObj->user=null;
-		$userObj->errors=array();
+		$callbackObj = new \stdClass;
+		$callbackObj->status=false;
+		$callbackObj->user=null;
+		$callbackObj->errors=array();
 
 		$role = Role::find_by_role('user');
 
 		if(is_null($role))
 		{
-			array_push($userObj->errors, 'A role user não existe. Contate o administrador');
-			return $userObj;
+			array_push($callbackObj->errors, 'A role user não existe. Contate o administrador');
+			return $callbackObj;
 		}
 		
 		$post = array_merge($post,array(
@@ -56,17 +56,17 @@ class User extends \HXPHP\System\Model
 		//var_dump($cadastrar->errors->get_raw_errors());
 		if($cadastrar->is_valid())
 		{
-			$userObj->user=$cadastrar;
-			$userObj->status=true;
-			return $userObj;
+			$callbackObj->user=$cadastrar;
+			$callbackObj->status=true;
+			return $callbackObj;
 		}
 
 		$errors=$cadastrar->errors->get_raw_errors();
 		foreach ($errors as $field => $message) {
-			array_push($userObj->errors, $message[0]);
+			array_push($callbackObj->errors, $message[0]);
 		}
 
-		return $userObj;
+		return $callbackObj;
 
 	}
 }
