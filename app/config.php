@@ -12,5 +12,5 @@ $configs->env->development->database->setConnectionData(array(
   'password' => 'admin',
   'dbname' => 'tarefatodolit'
   ));
-
+$configs->env->development->auth->setURLs('/sistema/home/', '/sistema/login/');
 return $configs;
