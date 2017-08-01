@@ -40,7 +40,9 @@ class CadastroController extends \HXPHP\System\Controller
        				'ops! Não foi possivel efetuar seu cadastro. <br> Verifique os erros abaixo:',
        				$cadastrarUsuario->errors
        			));
-       		}
+       		}else {
+				$this->auth->login($cadastrarUsuario->user->id, $cadastrarUsuario->user->username);
+			}
    	   }
        //gerar senha
        //obter role_id
